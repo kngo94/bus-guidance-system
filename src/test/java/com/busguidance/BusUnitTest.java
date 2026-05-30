@@ -77,7 +77,7 @@ public class BusUnitTest {
     @Test
     void testB3_DriverAge50_Capacity50_ShouldReturnTrue() {
         Driver driver = new Driver("23@#abcdAB", "John", 10,
-                "Heavy", "12|Main St|Melbourne|VIC|Australia", "15-06-1974");
+                "Heavy", "12|Main St|Melbourne|VIC|Australia", "15-06-1975");
         Bus bus = new Bus("12345678", 50, 80.0, "Diesel");
         assertTrue(bus.isDriverEligible(driver));
     }

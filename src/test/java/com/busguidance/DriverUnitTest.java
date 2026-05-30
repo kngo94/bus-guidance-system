@@ -1,8 +1,10 @@
-import org.junit.jupiter.api.Test;
+package com.busguidance;
 
-// Unit Test Cases for Driver Class
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 public class DriverUnitTest {
-    // Unit Test Cases for Driver Class
+
     // D1 Valid driver ID should be accepted
     @Test
     void testD1_ValidDriverID_ShouldReturnTrue() {
@@ -74,7 +76,7 @@ public class DriverUnitTest {
     void testD4_Under10Years_CanChangeLicense() {
         Driver driver = new Driver("23@#abcdAB", "John", 5,
                 "Light", "12|Main St|Melbourne|VIC|Australia", "15-06-1990");
-        assertTrue(driver.canUpdateLicense("Heavy"));
+        assertDoesNotThrow(() -> driver.setLicenseType("Heavy"));
     }
 
     // D4 Driver with more than 10 years cannot change license
@@ -82,7 +84,7 @@ public class DriverUnitTest {
     void testD4_Over10Years_CannotChangeLicense() {
         Driver driver = new Driver("23@#abcdAB", "John", 15,
                 "Heavy", "12|Main St|Melbourne|VIC|Australia", "15-06-1990");
-        assertFalse(driver.canUpdateLicense("Light"));
+        assertThrows(UnsupportedOperationException.class, () -> driver.setLicenseType("Light"));
     }
 
     // D4 Driver with exactly 10 years can change license
@@ -90,33 +92,30 @@ public class DriverUnitTest {
     void testD4_Exactly10Years_CanChangeLicense() {
         Driver driver = new Driver("23@#abcdAB", "John", 10,
                 "Light", "12|Main St|Melbourne|VIC|Australia", "15-06-1990");
-        assertTrue(driver.canUpdateLicense("Heavy"));
+        assertDoesNotThrow(() -> driver.setLicenseType("Heavy"));
     }
 
-    // D5 Updating allowed fields should return true
+    // D5 Updating allowed fields should not throw
     @Test
-    void testD5_UpdateAllowedFields_ShouldReturnTrue() {
+    void testD5_UpdateAllowedFields_ShouldNotThrow() {
         Driver driver = new Driver("23@#abcdAB", "John", 5,
                 "Light", "12|Main St|Melbourne|VIC|Australia", "15-06-1990");
-        assertTrue(driver.update("23@#abcdAB", "John", 6,
-                "Heavy", "15|Queen St|Sydney|NSW|Australia", "15-06-1990"));
+        assertDoesNotThrow(() -> driver.setAddress("15|Queen St|Sydney|NSW|Australia"));
     }
 
-    // D5 Trying to change driverID should return false
+    // D5 Trying to change driverID should throw exception
     @Test
-    void testD5_ChangeDriverID_ShouldReturnFalse() {
+    void testD5_ChangeDriverID_ShouldThrowException() {
         Driver driver = new Driver("23@#abcdAB", "John", 5,
                 "Light", "12|Main St|Melbourne|VIC|Australia", "15-06-1990");
-        assertFalse(driver.update("99@#abcdAB", "John", 6,
-                "Heavy", "15|Queen St|Sydney|NSW|Australia", "15-06-1990"));
+        assertThrows(UnsupportedOperationException.class, () -> driver.setDriverID("99@#abcdAB"));
     }
 
-    // D5 Trying to change name should return false
+    // D5 Trying to change name should throw exception
     @Test
-    void testD5_ChangeName_ShouldReturnFalse() {
+    void testD5_ChangeName_ShouldThrowException() {
         Driver driver = new Driver("23@#abcdAB", "John", 5,
                 "Light", "12|Main St|Melbourne|VIC|Australia", "15-06-1990");
-        assertFalse(driver.update("23@#abcdAB", "Mike", 6,
-                "Heavy", "15|Queen St|Sydney|NSW|Australia", "15-06-1990"));
+        assertThrows(UnsupportedOperationException.class, () -> driver.setName("Mike"));
     }
 }

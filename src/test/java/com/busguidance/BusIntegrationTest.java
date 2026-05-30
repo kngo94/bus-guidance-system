@@ -105,7 +105,7 @@ public class BusIntegrationTest {
         assertEquals(0, repo.count());
     }
 
-    // Integration Test 6: Capacity increase during update is rejected.
+    // Integration Test 6: Capacity increase during update is rejected
     @Test
     void testIT6_CapacityIncrease_IsRejected() throws IOException {
         Bus bus = new Bus(VALID_BUS_ID, VALID_CAPACITY, VALID_FUEL_LEVEL, VALID_FUEL_TYPE);

@@ -52,7 +52,7 @@ public class DriverIntegrationTest {
         assertEquals(VALID_BIRTHDATE, retrieved.getBirthdate());
     }
 
-    // Integration Test 2: Duplicate driver ID is rejected
+    // Integration Test 2: Duplicate driver ID is rejected.
     @Test
     void testIT2_DuplicateDriverID_IsRejected() throws IOException {
         Driver driver1 = new Driver(VALID_ID, VALID_NAME, VALID_EXPERIENCE,

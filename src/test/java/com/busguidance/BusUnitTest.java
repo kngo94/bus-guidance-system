@@ -91,7 +91,7 @@ public class BusUnitTest {
         assertFalse(bus.isDriverEligible(driver));
     }
 
-    // B3 Driver older than 50 on a bus with capacity below 50 should be eligible
+    // B3 Driver older than 50 on a bus with capacity below 50 should be eligible.
     @Test
     void testB3_DriverOver50_CapacityUnder50_ShouldReturnTrue() {
         Driver driver = new Driver("23@#abcdAB", "John", 10,
